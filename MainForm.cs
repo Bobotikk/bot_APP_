@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using crawer;
+using bot_APP_;
 
 namespace bot_APP_
 {
@@ -59,6 +59,58 @@ namespace bot_APP_
         {
             MidjourneyForm midjourneyForm = new MidjourneyForm(this); //   创建 MidjourneyForm 窗体,MidjourneyForm 是一个类的名称,表示一个窗体。midjourneyForm 是该类的一个实例变量。new MidjourneyForm(this) 是创建该类实例的构造函数调用。this 表示当前的 MainForm 实例,它被作为参数传递给 MidjourneyForm 的构造函数。
             midjourneyForm.Show();         // 显示 MidjourneyForm 窗体
+        }
+
+        private void BtnSendToInput_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BtnPreset_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BtnCleanTxtINandOut_Click(object sender, EventArgs e)
+        {
+            // 调用 ProcessClean 类的 CleanTxtINandOut 方法
+            ProcessClean.CleanTxtINandOut(richTextBoxTxtIn, richTextBoxTxtOut);
+        }
+
+        private void BtnAllClean_Click(object sender, EventArgs e)
+        {
+            // 调用 ProcessClean 类的 CleanAllText 方法，清理所有文本框
+            ProcessClean.CleanAllText(richTextBoxTxtIn, richTextBoxTxtOut, textBoxPrefix, textBoxSuffix);
+        }
+
+        private void BtnCleanPrefixandSuffix_Click(object sender, EventArgs e)
+        {
+            // 调用 ProcessClean 类的 CleanPrefixandSuffix 方法
+            ProcessClean.CleanPrefixandSuffix(textBoxPrefix, textBoxSuffix);
+        }
+
+        private void BtnOneKey_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 获取当前应用程序的启动目录
+                string appPath = Application.StartupPath;
+
+                // 构建要启动的.exe应用程序的完整路径
+                string exePath = System.IO.Path.Combine(appPath, "oneKey_v5.exe");
+
+                // 验证文件是否存在
+                if (!System.IO.File.Exists(exePath))
+                {
+                    MessageBox.Show("无法找到文件: " + exePath, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 使用Process类启动.exe应用程序
+                System.Diagnostics.Process.Start(exePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法启动应用程序: " + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

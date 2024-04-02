@@ -1,11 +1,12 @@
 ﻿// ProcessSentences.cs
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class ProcessSentences
     {
@@ -66,7 +67,6 @@ namespace crawer
             return sentences;
         }
 
-        // 新增方法：检查文本是否包含句子结束符
         private static bool ContainsSentenceEndSymbols(string text)
         {
             // 英文和中文句子结束符

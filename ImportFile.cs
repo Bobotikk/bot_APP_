@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class ImportFile
     {

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace crawer
+namespace bot_APP_
 {
 #pragma warning disable S1118 // Utility classes should not have public constructors
 

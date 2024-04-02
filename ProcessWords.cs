@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class ProcessWords
     {

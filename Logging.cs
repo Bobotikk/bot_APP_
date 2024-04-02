@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class Logging
     {

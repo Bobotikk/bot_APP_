@@ -9,7 +9,7 @@ using System.Xml;
 using System.Web;
 using System.IO;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class ProcessSymbols
     {

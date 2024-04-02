@@ -89,6 +89,7 @@ namespace bot_APP_
             this.BtnPreset.TabIndex = 2;
             this.BtnPreset.Text = "预设参数";
             this.BtnPreset.UseVisualStyleBackColor = true;
+            this.BtnPreset.Click += new System.EventHandler(this.BtnPreset_Click);
             // 
             // BtnImportFile
             // 
@@ -158,6 +159,7 @@ namespace bot_APP_
             this.BtnCleanPrefixandSuffix.TabIndex = 10;
             this.BtnCleanPrefixandSuffix.Text = "清理前后缀";
             this.BtnCleanPrefixandSuffix.UseVisualStyleBackColor = true;
+            this.BtnCleanPrefixandSuffix.Click += new System.EventHandler(this.BtnCleanPrefixandSuffix_Click);
             // 
             // BtnCleanTxtINandOut
             // 
@@ -168,6 +170,7 @@ namespace bot_APP_
             this.BtnCleanTxtINandOut.TabIndex = 4;
             this.BtnCleanTxtINandOut.Text = "清理文本";
             this.BtnCleanTxtINandOut.UseVisualStyleBackColor = true;
+            this.BtnCleanTxtINandOut.Click += new System.EventHandler(this.BtnCleanTxtINandOut_Click);
             // 
             // labelPrefix
             // 
@@ -208,6 +211,7 @@ namespace bot_APP_
             this.BtnSendToInput.TabIndex = 22;
             this.BtnSendToInput.Text = "发送到文本输入";
             this.BtnSendToInput.UseVisualStyleBackColor = true;
+            this.BtnSendToInput.Click += new System.EventHandler(this.BtnSendToInput_Click);
             // 
             // BtnSendWebUI
             // 
@@ -261,6 +265,7 @@ namespace bot_APP_
             this.BtnAllClean.TabIndex = 5;
             this.BtnAllClean.Text = "全部清理";
             this.BtnAllClean.UseVisualStyleBackColor = true;
+            this.BtnAllClean.Click += new System.EventHandler(this.BtnAllClean_Click);
             // 
             // BtnOneKey
             // 
@@ -271,6 +276,7 @@ namespace bot_APP_
             this.BtnOneKey.TabIndex = 18;
             this.BtnOneKey.Text = "一键多开";
             this.BtnOneKey.UseVisualStyleBackColor = true;
+            this.BtnOneKey.Click += new System.EventHandler(this.BtnOneKey_Click);
             // 
             // button2
             // 

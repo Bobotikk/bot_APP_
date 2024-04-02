@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace crawer
+namespace bot_APP_
 {
     public static class ProcessClean
     {
