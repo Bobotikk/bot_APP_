@@ -1,6 +1,4 @@
-﻿// ProcessSymbols.cs
-
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,23 +6,20 @@ using System.Windows.Forms;
 using System.Xml;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace bot_APP_
 {
     public static class ProcessSymbols
     {
         private static readonly Regex SymbolPattern = new Regex(@"[\u4e00-\u9fff\p{P}\p{S}\d]+", RegexOptions.Compiled);
+        private static readonly Regex CJKUnifiedIdeographsPattern = new Regex(@"[\u4e00-\u9fff]", RegexOptions.Compiled);
 
         public static void Process(RichTextBox inputBox, RichTextBox resultBox, TextBox prefixBox, TextBox suffixBox)
         {
-            if (prefixBox is null)
+            if (prefixBox is null || suffixBox is null)
             {
-                throw new ArgumentNullException(nameof(prefixBox));
-            }
-
-            if (suffixBox is null)
-            {
-                throw new ArgumentNullException(nameof(suffixBox));
+                throw new ArgumentNullException(nameof(prefixBox), "PrefixBox or SuffixBox is null.");
             }
 
             try
@@ -33,17 +28,14 @@ namespace bot_APP_
 
                 string inputText = inputBox.Text;
 
-                // Check if the input text is empty
                 if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    MessageBox.Show("当前输入内容为空，请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Stop further processing
+                    MessageBox.Show("当前输入内容为空,请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                string processedText = ProcessText(inputText);
-
-                // Further processing for different formats
-                string formattedText = FormatTextAsJsonHtml(processedText);
+                // 直接对 JSON 文本进行格式化处理
+                string formattedText = FormatJsonText(inputText);
 
                 resultBox.Clear();
                 resultBox.Text = formattedText;
@@ -59,57 +51,60 @@ namespace bot_APP_
             }
         }
 
-        private static string ProcessText(string text)
+        private static string FormatJsonText(string jsonText)
         {
-            Logging.LogInfo("Processing text...");
+            var jsonObject = JsonConvert.DeserializeObject<JToken>(jsonText);
+            var sb = new System.Text.StringBuilder();
 
-            string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-
-            var processedLines = lines.Select(line =>
+            void ProcessToken(JToken token)
             {
-                return SymbolPattern.Replace(line, " ").Trim();
-            });
-
-            string processedText = string.Join(Environment.NewLine, processedLines);
-
-            Logging.LogInfo("Text processed.");
-            return processedText;
-        }
-
-        private static string FormatTextAsJsonHtml(string text)
-        {
-            try
-            {
-                // 尝试将文本格式化为 JSON
-                var jsonObject = JsonConvert.DeserializeObject(text);
-                return JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
-            }
-            catch (JsonException)
-            {
-                try
+                switch (token.Type)
                 {
-                    // 如果不是 JSON，尝试格式化为 HTML
-                    return FormatHtml(text);
-                }
-                catch (XmlException)
-                {
-                    // 如果既不是有效的 JSON 也不是有效的 HTML，返回原始文本
-                    return text;
+                    case JTokenType.Object:
+                        foreach (var child in token.Children<JProperty>())
+                        {
+                            ProcessToken(child.Value);
+                        }
+                        break;
+
+                    case JTokenType.Array:
+                        foreach (var child in token.Children())
+                        {
+                            ProcessToken(child);
+                        }
+                        break;
+
+                    case JTokenType.Property:
+                        ProcessToken(((JProperty)token).Value);
+                        break;
+
+                    default:
+                        var value = token.ToString();
+                        ProcessValue(value);
+                        break;
                 }
             }
-        }
 
-        private static string FormatHtml(string html)
-        {
-            var document = new XmlDocument();
-            document.LoadXml(html);
-            StringWriter sw = new StringWriter();
-            XmlTextWriter xw = new XmlTextWriter(sw)
+            void ProcessValue(string value)
             {
-                Formatting = System.Xml.Formatting.Indented // Specify the full namespace for System.Xml.Formatting
-            };
-            document.WriteTo(xw);
-            return System.Net.WebUtility.HtmlDecode(sw.ToString());
+                // 第一次移除所有符号和中文字符
+                string processedValue = SymbolPattern.Replace(value, "");
+
+                // 对于那些长字符串，我们基于逗号进一步分割它们
+                var parts = processedValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var part in parts)
+                {
+                    var trimmedPart = part.Trim();
+                    if (!string.IsNullOrEmpty(trimmedPart))
+                    {
+                        sb.AppendLine($"__{trimmedPart}__");
+                    }
+                }
+            }
+
+            ProcessToken(jsonObject);
+            return sb.ToString().Trim();
         }
     }
 }
