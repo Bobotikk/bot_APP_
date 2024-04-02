@@ -63,10 +63,8 @@ namespace bot_APP_
 
         private void BtnSendToInput_Click(object sender, EventArgs e)
         {
-        }
-
-        private void BtnPreset_Click(object sender, EventArgs e)
-        {
+            // 将 richTextBoxTxtOut 的内容复制到 richTextBoxTxtIn
+            richTextBoxTxtIn.Text = richTextBoxTxtOut.Text;
         }
 
         private void BtnCleanTxtINandOut_Click(object sender, EventArgs e)

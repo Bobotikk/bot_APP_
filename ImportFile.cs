@@ -10,20 +10,21 @@ namespace bot_APP_
         private static string lastFilePath = "";
 
         public static void ImportFileToTextBox(RichTextBox textBox)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = string.IsNullOrEmpty(lastFilePath) ? "c:\\" : Path.GetDirectoryName(lastFilePath);
-                openFileDialog.Filter = "Text files (*.txt)|*.txt|YAML files (*.yaml)|*.yaml|HTML files (*.html)|*.html|XML files (*.xml)|*.xml|JSON files (*.json)|*.json|All files (*.*)|*.*";
-                openFileDialog.RestoreDirectory = true;
+{
+    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+    {
+        openFileDialog.InitialDirectory = string.IsNullOrEmpty(lastFilePath) ? "c:\\" : Path.GetDirectoryName(lastFilePath);
+        // 将“All files (*.*)|*.*”置于筛选列表的第一个位置
+        openFileDialog.Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt|YAML files (*.yaml)|*.yaml|HTML files (*.html)|*.html|XML files (*.xml)|*.xml|JSON files (*.json)|*.json";
+        openFileDialog.RestoreDirectory = true;
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    lastFilePath = openFileDialog.FileName;
-                    string fileContent = File.ReadAllText(openFileDialog.FileName);
-                    textBox.Text = fileContent;
-                }
-            }
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            lastFilePath = openFileDialog.FileName;
+            string fileContent = File.ReadAllText(openFileDialog.FileName);
+            textBox.Text = fileContent;
         }
+    }
+}
     }
 }

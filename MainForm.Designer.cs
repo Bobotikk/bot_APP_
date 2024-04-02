@@ -17,14 +17,7 @@ namespace bot_APP_
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+     
 
         #region Windows 窗体设计器生成的代码
 
@@ -89,7 +82,6 @@ namespace bot_APP_
             this.BtnPreset.TabIndex = 2;
             this.BtnPreset.Text = "预设参数";
             this.BtnPreset.UseVisualStyleBackColor = true;
-            this.BtnPreset.Click += new System.EventHandler(this.BtnPreset_Click);
             // 
             // BtnImportFile
             // 
