@@ -24,6 +24,13 @@ namespace crawer
                     return; // 终止进一步处理
                 }
 
+                // 新增检查：验证是否包含句子结束符
+                if (!ContainsSentenceEndSymbols(inputText))
+                {
+                    MessageBox.Show("当前输入内容非句符内容，请输入正确文本以后进行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // 终止进一步处理
+                }
+
                 string prefix = prefixEntry?.Text ?? "";
                 string suffix = suffixEntry?.Text ?? "";
 
@@ -57,6 +64,14 @@ namespace crawer
             Logging.LogInfo($"Found {sentences.Length} sentences.");
 
             return sentences;
+        }
+
+        // 新增方法：检查文本是否包含句子结束符
+        private static bool ContainsSentenceEndSymbols(string text)
+        {
+            // 英文和中文句子结束符
+            var endSymbolsPattern = new Regex(@"[.!?。！？]");
+            return endSymbolsPattern.IsMatch(text);
         }
     }
 }

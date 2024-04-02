@@ -99,6 +99,7 @@ namespace bot_APP_
             this.BtnImportFile.TabIndex = 3;
             this.BtnImportFile.Text = "文件导入";
             this.BtnImportFile.UseVisualStyleBackColor = true;
+            this.BtnImportFile.Click += new System.EventHandler(this.BtnImportFile_Click);
             // 
             // BtnEmoji
             // 
@@ -122,6 +123,7 @@ namespace bot_APP_
             this.BtnWords.TabIndex = 12;
             this.BtnWords.Text = "字符格式化";
             this.BtnWords.UseVisualStyleBackColor = true;
+            this.BtnWords.Click += new System.EventHandler(this.BtnWords_Click);
             // 
             // BtnSentence
             // 
@@ -133,6 +135,7 @@ namespace bot_APP_
             this.BtnSentence.TabIndex = 13;
             this.BtnSentence.Text = "句符格式化";
             this.BtnSentence.UseVisualStyleBackColor = true;
+            this.BtnSentence.Click += new System.EventHandler(this.BtnSentence_Click);
             // 
             // BtnChinese
             // 
@@ -144,6 +147,7 @@ namespace bot_APP_
             this.BtnChinese.TabIndex = 14;
             this.BtnChinese.Text = "中文字符处理";
             this.BtnChinese.UseVisualStyleBackColor = true;
+            this.BtnChinese.Click += new System.EventHandler(this.BtnChinese_Click);
             // 
             // BtnCleanPrefixandSuffix
             // 
@@ -297,6 +301,7 @@ namespace bot_APP_
             this.button1.TabIndex = 15;
             this.button1.Text = "Midjourney参数";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 

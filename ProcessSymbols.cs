@@ -86,8 +86,16 @@ namespace crawer
             }
             catch (JsonException)
             {
-                // 如果不是 JSON，尝试格式化为 HTML
-                return FormatHtml(text);
+                try
+                {
+                    // 如果不是 JSON，尝试格式化为 HTML
+                    return FormatHtml(text);
+                }
+                catch (XmlException)
+                {
+                    // 如果既不是有效的 JSON 也不是有效的 HTML，返回原始文本
+                    return text;
+                }
             }
         }
 
