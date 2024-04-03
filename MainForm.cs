@@ -110,5 +110,9 @@ namespace bot_APP_
                 MessageBox.Show("无法启动应用程序: " + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void BtnSendMidjourney_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

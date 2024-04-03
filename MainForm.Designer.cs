@@ -42,15 +42,12 @@ namespace bot_APP_
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnSendToInput = new System.Windows.Forms.Button();
-            this.BtnSendWebUI = new System.Windows.Forms.Button();
             this.BtnSendMidjourney = new System.Windows.Forms.Button();
             this.textBoxPrefix = new System.Windows.Forms.TextBox();
             this.labelSuffix = new System.Windows.Forms.Label();
             this.textBoxSuffix = new System.Windows.Forms.TextBox();
             this.BtnAllClean = new System.Windows.Forms.Button();
             this.BtnOneKey = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -205,16 +202,6 @@ namespace bot_APP_
             this.BtnSendToInput.UseVisualStyleBackColor = true;
             this.BtnSendToInput.Click += new System.EventHandler(this.BtnSendToInput_Click);
             // 
-            // BtnSendWebUI
-            // 
-            this.BtnSendWebUI.Location = new System.Drawing.Point(304, 599);
-            this.BtnSendWebUI.Margin = new System.Windows.Forms.Padding(4);
-            this.BtnSendWebUI.Name = "BtnSendWebUI";
-            this.BtnSendWebUI.Size = new System.Drawing.Size(127, 33);
-            this.BtnSendWebUI.TabIndex = 23;
-            this.BtnSendWebUI.Text = "发送到SD-WebUI";
-            this.BtnSendWebUI.UseVisualStyleBackColor = true;
-            // 
             // BtnSendMidjourney
             // 
             this.BtnSendMidjourney.Location = new System.Drawing.Point(169, 599);
@@ -224,6 +211,7 @@ namespace bot_APP_
             this.BtnSendMidjourney.TabIndex = 23;
             this.BtnSendMidjourney.Text = "发送到Midjourney";
             this.BtnSendMidjourney.UseVisualStyleBackColor = true;
+            this.BtnSendMidjourney.Click += new System.EventHandler(this.BtnSendMidjourney_Click);
             // 
             // textBoxPrefix
             // 
@@ -270,26 +258,6 @@ namespace bot_APP_
             this.BtnOneKey.UseVisualStyleBackColor = true;
             this.BtnOneKey.Click += new System.EventHandler(this.BtnOneKey_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(304, 649);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 33);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "发送到ComfyUI";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(304, 690);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(127, 33);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "发送到ChatGPT";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -307,8 +275,6 @@ namespace bot_APP_
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 773);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.BtnOneKey);
             this.Controls.Add(this.BtnAllClean);
             this.Controls.Add(this.textBoxSuffix);
@@ -316,7 +282,6 @@ namespace bot_APP_
             this.Controls.Add(this.labelPrefix);
             this.Controls.Add(this.labelSuffix);
             this.Controls.Add(this.BtnSendMidjourney);
-            this.Controls.Add(this.BtnSendWebUI);
             this.Controls.Add(this.BtnSendToInput);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -356,15 +321,12 @@ namespace bot_APP_
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnSendToInput;
-        private System.Windows.Forms.Button BtnSendWebUI;
         private System.Windows.Forms.Button BtnSendMidjourney;
         private System.Windows.Forms.TextBox textBoxPrefix;
         private System.Windows.Forms.Label labelSuffix;
         private System.Windows.Forms.TextBox textBoxSuffix;
         private System.Windows.Forms.Button BtnAllClean;
         private System.Windows.Forms.Button BtnOneKey;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private Button button1;
     }
 }
