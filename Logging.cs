@@ -10,7 +10,7 @@ namespace bot_APP_
         // 日志文件夹路径
         private static readonly string LogFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log");
 
-        public static void Log(string message, string fileName)
+        public static void Log (string message, string fileName)
         {
             try
             {
@@ -36,17 +36,17 @@ namespace bot_APP_
             }
         }
 
-        public static void LogInfo(string message, string fileName = "info.log")
+        public static void LogInfo (string message, string fileName = "info.log")
         {
             Log($"INFO: {message}", fileName);
         }
 
-        public static void LogWarning(string message, string fileName = "warning.log")
+        public static void LogWarning (string message, string fileName = "warning.log")
         {
             Log($"WARNING: {message}", fileName);
         }
 
-        public static void LogError(string message, string fileName = "error.log")
+        public static void LogError (string message, string fileName = "error.log")
         {
             Log($"ERROR: {message}", fileName);
         }

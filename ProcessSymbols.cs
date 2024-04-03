@@ -34,8 +34,18 @@ namespace bot_APP_
                     return;
                 }
 
-                // 直接对 JSON 文本进行格式化处理
-                string formattedText = FormatJsonText(inputText);
+                string formattedText;
+
+                // 尝试将输入文本解析为JSON格式
+                if (IsValidJson(inputText))
+                {
+                    formattedText = FormatJsonText(inputText);
+                }
+                else
+                {
+                    // 如果不是有效的JSON格式,则按照普通文本处理
+                    formattedText = FormatPlainText(inputText);
+                }
 
                 resultBox.Clear();
                 resultBox.Text = formattedText;
@@ -48,6 +58,19 @@ namespace bot_APP_
             {
                 Logging.LogError("Error processing symbols: " + ex.Message);
                 MessageBox.Show("An error occurred while processing symbols: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static bool IsValidJson(string input)
+        {
+            try
+            {
+                JToken.Parse(input);
+                return true;
+            }
+            catch (JsonReaderException)
+            {
+                return false;
             }
         }
 
@@ -87,10 +110,7 @@ namespace bot_APP_
 
             void ProcessValue(string value)
             {
-                // 第一次移除所有符号和中文字符
                 string processedValue = SymbolPattern.Replace(value, "");
-
-                // 对于那些长字符串，我们基于逗号进一步分割它们
                 var parts = processedValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var part in parts)
@@ -104,6 +124,23 @@ namespace bot_APP_
             }
 
             ProcessToken(jsonObject);
+            return sb.ToString().Trim();
+        }
+
+        private static string FormatPlainText(string plainText)
+        {
+            var sb = new System.Text.StringBuilder();
+            var lines = plainText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var line in lines)
+            {
+                string processedLine = SymbolPattern.Replace(line, "");
+                if (!string.IsNullOrWhiteSpace(processedLine))
+                {
+                    sb.AppendLine($"__{processedLine.Trim()}__");
+                }
+            }
+
             return sb.ToString().Trim();
         }
     }
