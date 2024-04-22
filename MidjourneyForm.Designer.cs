@@ -1,5 +1,6 @@
 ﻿// MidjourneyForm.Designer.cs
 
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -11,6 +12,11 @@ namespace bot_APP_
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        public MidjourneyForm (IContainer components)
+        {
+            this.components = components;
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -24,7 +30,7 @@ namespace bot_APP_
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent ()
         {
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxMJForm = new System.Windows.Forms.TextBox();
@@ -97,6 +103,11 @@ namespace bot_APP_
             // numericUpDownResult
             // 
             this.numericUpDownResult.Location = new System.Drawing.Point(171, 134);
+            this.numericUpDownResult.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numericUpDownResult.Name = "numericUpDownResult";
             this.numericUpDownResult.Size = new System.Drawing.Size(40, 21);
             this.numericUpDownResult.TabIndex = 3;

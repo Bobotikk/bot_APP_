@@ -9,13 +9,13 @@ namespace bot_APP_
 
     public class ProcessSave
     {
-        public static void SaveProcessedText(string text, string outputFolder = "process_Output")
+        public static void SaveProcessedText (string text, string outputFolder = "process_Output")
         {
             string v = $"Output_{DateTime.Now:yyyyMMdd_HHmmss}.text";
             SaveProcessedText(text, v: v, outputFolder);
         }
 
-        public static void SaveProcessedText(string text, string v, string outputFolder = "process_Output")
+        public static void SaveProcessedText (string text, string v, string outputFolder = "process_Output")
         {
             try
             {
@@ -29,15 +29,15 @@ namespace bot_APP_
                 string filePath = Path.Combine(folderPath, fileName);
 
                 File.WriteAllText(filePath, text);
-                MessageBox.Show($"文件已保存至: {filePath}", "保存成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($@"文件已保存至: {filePath}", @"保存成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"保存文件时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($@"保存文件时发生错误: {ex.Message}", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        internal static void SaveProcessedText(object value)
+        internal static void SaveProcessedText (object value)
         {
             throw new NotImplementedException();
         }

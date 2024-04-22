@@ -9,13 +9,13 @@ namespace bot_APP_
     {
         private MainForm mainForm;
 
-        public MidjourneyForm(MainForm mainForm)
+        public MidjourneyForm (MainForm mainForm)
         {
             InitializeComponent();
             this.mainForm = mainForm;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click (object sender, EventArgs e)
         {
             // 检查文本输入框是否有内容
             if (!string.IsNullOrWhiteSpace(textBoxMJForm.Text))
@@ -36,19 +36,19 @@ namespace bot_APP_
             numericUpDownResult.Value = 0;
         }
 
-        private void buttonMidjourney_Click(object sender, EventArgs e)
+        private void buttonMidjourney_Click (object sender, EventArgs e)
         {
             // 检查输入内容是否为空
             if (string.IsNullOrWhiteSpace(textBoxMJForm.Text))
             {
-                MessageBox.Show("当前输入内容为空,请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"当前输入内容为空,请输入内容后再执行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // 停止进一步处理
             }
 
             // 检查增量和结果数量是否小于0
             if (numericUpDownaADD.Value < 0 || numericUpDownResult.Value < 0)
             {
-                MessageBox.Show("输入参数有误,增量和结果数量只能为大于等于0的值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"输入参数有误,增量和结果数量只能为大于等于0的值", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // 停止进一步处理
             }
 
@@ -92,7 +92,7 @@ namespace bot_APP_
             }
         }
 
-        private void BtnMJSendToMainFormTex_Click(object sender, EventArgs e)
+        private void BtnMJSendToMainFormTex_Click (object sender, EventArgs e)
         {
             // 获取 richTextBoxOutput 的文本内容
             string outputText = richTextBoxOutput.Text;

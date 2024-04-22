@@ -8,7 +8,7 @@ namespace bot_APP_
 {
     public static class ProcessWords
     {
-        public static string ProcessText(string text, string prefix, string suffix)
+        public static string ProcessText (string text, string prefix, string suffix)
         {
             var splitRegex = new Regex(@"\r\n|\n|\r", RegexOptions.Compiled);
 
@@ -20,7 +20,7 @@ namespace bot_APP_
             return string.Join(Environment.NewLine, processedLines);
         }
 
-        public static void ProcessWordsMethod(RichTextBox inputBox, RichTextBox resultBox, TextBox prefixBox, TextBox suffixBox)
+        public static void ProcessWordsMethod (RichTextBox inputBox, RichTextBox resultBox, TextBox prefixBox, TextBox suffixBox)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace bot_APP_
                 // Check if input is empty and show message if it is
                 if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    MessageBox.Show("当前输入内容为空，请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(@"当前输入内容为空，请输入内容后再执行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // Stop further processing
                 }
 
@@ -42,7 +42,7 @@ namespace bot_APP_
 
                 if (string.IsNullOrEmpty(formattedOutput))
                 {
-                    MessageBox.Show("Formatted output is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"Formatted output is empty", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -55,11 +55,11 @@ namespace bot_APP_
             catch (Exception ex)
             {
                 Logging.LogError($"Error processing words: {ex.Message}");
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($@"An error occurred: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private static string GetInputText(RichTextBox inputBox)
+        private static string GetInputText (RichTextBox inputBox)
         {
             return inputBox.Text.Trim();
         }

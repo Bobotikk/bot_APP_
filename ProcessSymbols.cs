@@ -15,7 +15,7 @@ namespace bot_APP_
         private static readonly Regex SymbolPattern = new Regex(@"[\u4e00-\u9fff\p{P}\p{S}\d]+", RegexOptions.Compiled);
         private static readonly Regex CJKUnifiedIdeographsPattern = new Regex(@"[\u4e00-\u9fff]", RegexOptions.Compiled);
 
-        public static void Process(RichTextBox inputBox, RichTextBox resultBox, TextBox prefixBox, TextBox suffixBox)
+        public static void Process (RichTextBox inputBox, RichTextBox resultBox, TextBox prefixBox, TextBox suffixBox)
         {
             if (prefixBox is null || suffixBox is null)
             {
@@ -30,7 +30,7 @@ namespace bot_APP_
 
                 if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    MessageBox.Show("当前输入内容为空,请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(@"当前输入内容为空,请输入内容后再执行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -57,11 +57,11 @@ namespace bot_APP_
             catch (Exception ex)
             {
                 Logging.LogError("Error processing symbols: " + ex.Message);
-                MessageBox.Show("An error occurred while processing symbols: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while processing symbols: " + ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private static bool IsValidJson(string input)
+        private static bool IsValidJson (string input)
         {
             try
             {
@@ -74,12 +74,12 @@ namespace bot_APP_
             }
         }
 
-        private static string FormatJsonText(string jsonText)
+        private static string FormatJsonText (string jsonText)
         {
             var jsonObject = JsonConvert.DeserializeObject<JToken>(jsonText);
             var sb = new System.Text.StringBuilder();
 
-            void ProcessToken(JToken token)
+            void ProcessToken (JToken token)
             {
                 switch (token.Type)
                 {
@@ -108,7 +108,7 @@ namespace bot_APP_
                 }
             }
 
-            void ProcessValue(string value)
+            void ProcessValue (string value)
             {
                 string processedValue = SymbolPattern.Replace(value, "");
                 var parts = processedValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -127,7 +127,7 @@ namespace bot_APP_
             return sb.ToString().Trim();
         }
 
-        private static string FormatPlainText(string plainText)
+        private static string FormatPlainText (string plainText)
         {
             var sb = new System.Text.StringBuilder();
             var lines = plainText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);

@@ -12,7 +12,7 @@ namespace bot_APP_
     {
         private static readonly Regex SentenceEndPattern = new Regex(@"(?<=[.!?。！？])\s+", RegexOptions.Compiled);
 
-        public static void Process(RichTextBox inputBox, RichTextBox resultBox, TextBox prefixEntry, TextBox suffixEntry)
+        public static void Process (RichTextBox inputBox, RichTextBox resultBox, TextBox prefixEntry, TextBox suffixEntry)
         {
             try
             {
@@ -21,14 +21,14 @@ namespace bot_APP_
                 string inputText = inputBox.Text;
                 if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    MessageBox.Show("当前输入内容为空，请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(@"当前输入内容为空，请输入内容后再执行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // 终止进一步处理
                 }
 
                 // 新增检查：验证是否包含句子结束符
                 if (!ContainsSentenceEndSymbols(inputText))
                 {
-                    MessageBox.Show("当前输入内容非句符内容，请输入正确文本以后进行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(@"当前输入内容非句符内容，请输入正确文本以后进行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // 终止进一步处理
                 }
 
@@ -50,11 +50,11 @@ namespace bot_APP_
             catch (Exception ex)
             {
                 Logging.LogError("Error processing sentences: " + ex.Message);
-                MessageBox.Show("An error occurred while processing sentences: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while processing sentences: " + ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private static string[] SplitSentences(string text)
+        private static string[] SplitSentences (string text)
         {
             Logging.LogInfo("Splitting sentences...");
 
@@ -67,7 +67,7 @@ namespace bot_APP_
             return sentences;
         }
 
-        private static bool ContainsSentenceEndSymbols(string text)
+        private static bool ContainsSentenceEndSymbols (string text)
         {
             // 英文和中文句子结束符
             var endSymbolsPattern = new Regex(@"[.!?。！？]");

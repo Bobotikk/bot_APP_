@@ -8,7 +8,7 @@ namespace bot_APP_
 {
     public static class ProcessEmojis
     {
-        public static void ProcessEmojisMethod(RichTextBox input, RichTextBox output, TextBox prefixBox, TextBox suffixBox)
+        public static void ProcessEmojisMethod (RichTextBox input, RichTextBox output, TextBox prefixBox, TextBox suffixBox)
         {
             try
             {
@@ -17,7 +17,7 @@ namespace bot_APP_
                 // Check if input text is empty
                 if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    MessageBox.Show("当前输入内容为空，请输入内容后再执行操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(@"当前输入内容为空，请输入内容后再执行操作", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // Stop further processing
                 }
 
@@ -29,7 +29,7 @@ namespace bot_APP_
                 // Check if the input contains any emojis
                 if (!emojiPattern.IsMatch(inputText))
                 {
-                    MessageBox.Show("当前输入内容非图像emoji，不做任何操作，请更换内容后执行", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"当前输入内容非图像emoji，不做任何操作，请更换内容后执行", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -45,7 +45,7 @@ namespace bot_APP_
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($@"An error occurred: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logging.LogError($"Error processing emojis: {ex.Message}");
             }
         }
